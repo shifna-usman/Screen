@@ -1,4 +1,4 @@
-/* SignUp.css */
+
 
 .Container {
     display: flex;
@@ -11,7 +11,7 @@
   .Form-container {
     background-color: #ffffff;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
@@ -45,6 +45,4 @@
   p {
     font-size: 14px;
   }
-  
-  /* Add more styles as needed */
   

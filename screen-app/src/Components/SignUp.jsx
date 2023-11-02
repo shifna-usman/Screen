@@ -1,13 +1,29 @@
 import { useState } from "react";
 import './SignUp.css';
 import validator from "validator";
-
+import { useEffect } from "react";
 function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('abc@gmail.com');
   const [message, setMessage] = useState('');
   const [errormessage, setErrormessage] = useState('');
   const [password, setPassword] = useState('');
+
+ useEffect=(()=>{
+    const data=localStorage.getItem('data');
+    if(data){
+        const parsedData=JSON.parse(data)
+        setName(parsedData.name);
+        setEmail(parsedData.email);
+        setPassword(parsedData.password);
+    }
+ },[]);
+  function handleSave(){
+    const dataToSave=JSON.stringify({name,email,password});
+    localStorage.setItem("data",dataToSave);
+
+  }
+
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -17,7 +33,7 @@ function SignUp() {
       email,
       password,
     });
-
+    handleSave();
     setName('');
     setEmail('');
     setPassword('');
@@ -39,7 +55,7 @@ function SignUp() {
     setPassword(newPassword);
 
     if (!validator.isStrongPassword(newPassword)) {
-      setErrormessage('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.');
+      setErrormessage('Password must be at least 8 characters');
     } else {
       setErrormessage('');
     }
